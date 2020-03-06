@@ -262,9 +262,17 @@ class Image
         do {
             //创建新图像
             $img = imagecreatetruecolor($width, $height);
-            // 调整默认颜色
-            $color = imagecolorallocate($img, 255, 255, 255);
-            imagefill($img, 0, 0, $color);
+            if ($this->info['type'] == 'png') {
+                $color = imagecolorallocatealpha($img , 0 , 0 , 0 ,127);//拾取一个完全透明的颜色
+                imagealphablending($img ,false);//关闭混合模式，以便透明颜色能覆盖原画布
+                imagefill($img , 0 , 0, $color);//填充
+                imagesavealpha($img ,true);//设置保存PNG时保留透明通道信息
+            } else {
+                // 调整默认颜色
+                $color = imagecolorallocate($img, 255, 255, 255);
+                imagefill($img, 0, 0, $color);
+            }
+
             //裁剪
             imagecopyresampled($img, $this->im, 0, 0, $x, $y, $width, $height, $w, $h);
             imagedestroy($this->im); //销毁原图

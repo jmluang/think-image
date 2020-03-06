@@ -8,8 +8,26 @@
 // +----------------------------------------------------------------------
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
-define('TEST_PATH', __DIR__ . '/');
-// 加载框架基础文件
-require __DIR__ . '/../vendor/topthink/framework/base.php';
-\think\Loader::addNamespace('tests', TEST_PATH);
-\think\Loader::addNamespace('think', __DIR__ . '/../src/');
+namespace tests;
+
+use think\Image;
+
+class CropTest extends TestCase
+{
+    public function testPng()
+    {
+        $save = TEST_PATH . 'tmp/croppng.png';
+
+        $image    = Image::open($this->getJpeg());
+        $width = intval(0.8 * $image->width());
+        $height = intval(0.8 * $image->height());
+
+        $image->crop($width, $height, 0, 0, $width, $height)->save($save);
+
+        $this->assertEquals($width, $image->width());
+        $this->assertEquals($height, $image->height());
+
+        $file = new \SplFileInfo($save);
+        $this->assertTrue($file->isFile());
+    }
+}
