@@ -639,12 +639,17 @@ class Image
         }
     }
 
+    public function destory()
+    {
+        empty($this->im) || imagedestroy($this->im); 
+    }
+
     /**
      * 析构方法，用于销毁图像资源
      */
     public function __destruct()
     {
-        empty($this->im) || imagedestroy($this->im);
+        $this->destory();
     }
 
 }
