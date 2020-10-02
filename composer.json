@@ -4,8 +4,8 @@
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
+            "name": "jmluang",
+            "email": "0xgnimoaix@gmail.com"
         }
     ],
     "require": {
@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "topthink/framework": "<5.1",
-        "phpunit/phpunit": "4.8.*"
+        "phpunit/phpunit": "7.*"
     },
     "config": {
         "preferred-install": "dist"
@@ -22,5 +22,8 @@
         "psr-4": {
             "think\\": "src"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

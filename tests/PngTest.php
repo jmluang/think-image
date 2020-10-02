@@ -12,7 +12,7 @@ namespace tests;
 
 use think\Image;
 
-class CropTest extends TestCase
+class PngTest extends TestCase
 {
     public function testPng()
     {
