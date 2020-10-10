@@ -656,7 +656,6 @@ class Image
      */
     public function __destruct()
     {
-        echo "call __destruct()" . "\n";
         $this->destroy();
     }
 }
